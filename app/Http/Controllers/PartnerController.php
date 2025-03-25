@@ -7,6 +7,7 @@ use App\Http\Requests\PartnerUpdateRequest;
 use App\Models\Partner;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PartnerController extends Controller
 {
@@ -25,15 +26,18 @@ class PartnerController extends Controller
 
     public function create(PartnerRequest $request)
     {
+        DB::beginTransaction();
         try {
             $partner = Partner::query()->create($request->except('image'));
             if ($request->hasFile('image')) {
-                    $path = $request->file('image')->store('public/partners');
+                    $path = $request->file('image')->store('partners', 'public');
                     $partner->image = $path;
                     $partner->save();
             }
+            DB::commit();
             return $this->responseSuccess($partner);
         }catch (\Exception $exception){
+            DB::rollBack();
             return $this->responseErrorWithCode(404, 'Not Found');
         }
     }
