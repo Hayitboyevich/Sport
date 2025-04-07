@@ -41,7 +41,22 @@ class LinkController extends Controller
 
     public function edit($id, LinkUpdateRequest $request)
     {
+        try {
+            $link = Link::query()->findOrFail($id);
+            $link->update($request->except('image'));
 
+            if ($request->hasFile('image')) {
+                foreach ($request->file('image') as $image) {
+                    $path = $image->store('links', 'public');
+                    $link->image = $path;
+                    $link->save();
+                }
+
+            }
+            return $this->responseSuccess($link);
+        }catch (\Exception $exception){
+            return $this->responseErrorWithCode(404, $exception->getMessage());
+        }
     }
 
     public function delete($id)

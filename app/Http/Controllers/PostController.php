@@ -27,16 +27,16 @@ class PostController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'post_menu_id' => 'required',
-            'post_title' => 'required|string',
-            'post_image' => 'required|string',
-            'post_desc' => 'required|string',
-            'post_content' => 'required|string',
-            'post_title_ru' => 'required|string',
-            'post_title_en' => 'required|string',
-            'post_desc_ru' => 'required|string',
-            'post_desc_en' => 'required|string',
-            'post_content_ru' => 'required|string',
-            'post_content_en' => 'required|string',
+            'post_title' => 'sometimes',
+            'post_image' => 'sometimes',
+            'post_desc' => 'sometimes',
+            'post_content' => 'sometimes',
+            'post_title_ru' => 'sometimes',
+            'post_title_en' => 'sometimes',
+            'post_desc_ru' => 'sometimes',
+            'post_desc_en' => 'sometimes',
+            'post_content_ru' => 'sometimes',
+            'post_content_en' => 'sometimes',
             'post_date' => 'required|date'
         ]);
 
@@ -78,7 +78,7 @@ class PostController extends Controller
         }
     }
 
-    public function PostDelete(Request $request, $id)
+    public function PostDelete($id)
     {
         try {
             $query = Post::query()
@@ -168,7 +168,7 @@ class PostController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'page_menu_id' => 'required',
-            'page_content' => 'required|string'
+            'page_content' => 'sometimes'
         ]);
 
         if ($validator->fails()) {
@@ -231,11 +231,11 @@ class PostController extends Controller
         $validator = Validator::make($request->all(), [
             'member_menu_id' => 'required',
             'member_photo' => 'required|string',
-            'member_name' => 'required|string',
-            'member_deputy_name' => 'required|string',
+            'member_name' => 'sometimes',
+            'member_deputy_name' => 'sometimes',
             'member_email' => 'required|string',
             'member_phone' => 'required|string',
-            'member_address' => 'required|string'
+            'member_address' => 'sometimes'
         ]);
 
         if ($validator->fails()) {

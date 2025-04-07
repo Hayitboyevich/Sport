@@ -15,7 +15,7 @@ class ServiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_uz' => 'required',
+            'name_uz' => 'sometimes',
             'name_ru' => 'sometimes',
             'name_en' => 'sometimes',
             'value' => 'sometimes',

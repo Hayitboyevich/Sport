@@ -16,9 +16,9 @@ class LinkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_uz' => 'required|string|max:255',
-            'name_ru' => 'sometimes|string|max:255',
-            'name_en' => 'sometimes|string|max:255',
+            'name_uz' => 'sometimes',
+            'name_ru' => 'sometimes',
+            'name_en' => 'sometimes',
             'url' => 'required|string|max:255',
             'image' => 'required|array',
         ];

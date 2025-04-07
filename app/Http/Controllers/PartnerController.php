@@ -44,7 +44,18 @@ class PartnerController extends Controller
 
     public function edit($id, PartnerUpdateRequest $request)
     {
+        try {
+            $partner = Partner::query()->findOrFail($id);
+            $partner->update($request->except('image'));
+            if ($request->hasFile('image')) {
+                $path = $request->file('image')->store('partners', 'public');
+                $partner->image = $path;
+                $partner->save();
+            }
 
+        }catch (\Exception $exception){
+            return $this->responseErrorWithCode(404, $exception->getMessage());
+        }
     }
 
     public function getPartner($id)
