@@ -53,6 +53,8 @@ class PartnerController extends Controller
                 $partner->save();
             }
 
+            return $this->responseSuccess($partner);
+
         }catch (\Exception $exception){
             return $this->responseErrorWithCode(404, $exception->getMessage());
         }
