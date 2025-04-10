@@ -15,7 +15,7 @@ class PartnerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_uz'  => 'required',
+            'name_uz'  => 'sometimes',
             'name_ru'  => 'sometimes',
             'name_en'  => 'sometimes',
             'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StatisticRequest;
+use App\Http\Requests\StatisticUpdateRequest;
 use App\Models\Statistic;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
@@ -27,6 +28,17 @@ class StatisticController extends Controller
     {
         try {
             $statistic =  Statistic::query()->create($request->validated());
+            return $this->responseSuccess($statistic);
+        }catch (\Exception $exception){
+            return $this->responseErrorWithCode(404, $exception->getMessage());
+        }
+    }
+
+    public function edit($id, StatisticUpdateRequest  $request)
+    {
+        try {
+            $statistic =  Statistic::query()->findOrFail($id);
+            $statistic->update($request->validated());
             return $this->responseSuccess($statistic);
         }catch (\Exception $exception){
             return $this->responseErrorWithCode(404, $exception->getMessage());

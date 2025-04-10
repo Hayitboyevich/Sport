@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LinkUpdateRequest extends FormRequest
+class ServiceUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,10 @@ class LinkUpdateRequest extends FormRequest
             'name_uz' => 'sometimes',
             'name_ru' => 'sometimes',
             'name_en' => 'sometimes',
-            'url' => 'sometimes',
+            'value' => 'sometimes',
             'image' => 'sometimes',
+            'status' => 'sometimes',
+            'type' => 'sometimes',
         ];
     }
 }

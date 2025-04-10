@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ServiceRequest;
+use App\Http\Requests\ServiceUpdateRequest;
 use App\Models\Service;
 use App\Traits\ResponseTrait;
 
@@ -44,9 +45,22 @@ class ServiceController extends Controller
         }
     }
 
-    public function update()
+    public function edit($id, ServiceUpdateRequest  $request)
     {
+        try {
+            $service = Service::query()->findOrFail($id);
+            $service->update($request->except('image'));
 
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $path = $image->store('service', 'public');
+                $service->image = $path;
+                $service->save();
+            }
+            return $this->responseSuccess($service);
+        }catch (\Exception $exception){
+            return $this->responseErrorWithCode(404, 'Xatolik aniqlandi');
+        }
     }
 
     public function getOne($id)
