@@ -14,7 +14,7 @@ class GaleryController extends Controller
     public function list()
     {
         try {
-           $galleries = Galery::query()
+           $galleries = Galery::query()->with('images')
                ->when(\request('type'), function ($query) {
                    return $query->where('type', \request('type'));
                })

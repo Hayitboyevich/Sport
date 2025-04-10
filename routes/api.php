@@ -86,6 +86,7 @@ Route::middleware(['jwtauth'])->group(function () {
 
     //Service
     Route::delete('service/delete/{id}', [ServiceController::class, 'delete']);
+    Route::delete('delete-image/{id}', [ServiceController::class, 'imageDelete']);
     Route::put('service/edit/{id}', [ServiceController::class, 'edit']);
     Route::post('service/create', [ServiceController::class, 'create']);
     Route::post('service/change-status', [ServiceController::class, 'changeStatus']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ServiceRequest;
 use App\Http\Requests\ServiceUpdateRequest;
+use App\Models\Image;
 use App\Models\Service;
 use App\Traits\ResponseTrait;
 
@@ -90,6 +91,17 @@ class ServiceController extends Controller
            $service = Service::query()->findOrFail($id);
            $service->delete();
            return $this->responseSuccess(null);
+        }catch (\Exception $exception){
+            return $this->responseErrorWithCode(404, 'Xatolik aniqlandi');
+        }
+    }
+
+    public function imageDelete($id)
+    {
+        try {
+            $image = Image::query()->findOrFail($id);
+            $image->delete();
+            return $this->responseSuccess(null);
         }catch (\Exception $exception){
             return $this->responseErrorWithCode(404, 'Xatolik aniqlandi');
         }
