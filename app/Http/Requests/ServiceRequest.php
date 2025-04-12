@@ -19,6 +19,7 @@ class ServiceRequest extends FormRequest
             'name_ru' => 'sometimes',
             'name_en' => 'sometimes',
             'value' => 'sometimes',
+            'url' => 'sometimes',
             'image' => 'sometimes',
             'status' => 'sometimes',
             'type' => 'required|in:1,2,3',
