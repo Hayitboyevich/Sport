@@ -78,7 +78,6 @@ class GaleryController extends Controller
             }
 
             if ($request->hasFile('images')) {
-                $gallery->images()->delete();
                 foreach ($request->file('images') as $key=>$image) {
                     $path = $image->store('gallery', 'public');
                     $gallery->images()->create(['url' => $path, 'order' => $key+1]);
