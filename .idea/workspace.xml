@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db76c1ca-a25d-4196-836d-605ae4f32f4e" name="Changes" comment="bug fix">
-      <change beforePath="$PROJECT_DIR$/.idea/Sport.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Sport.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GaleryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GaleryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ServiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ServiceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ServiceUpdateRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ServiceUpdateRequest.php" afterDir="false" />
-    </list>
+    <list default="true" id="db76c1ca-a25d-4196-836d-605ae4f32f4e" name="Changes" comment="bug fix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -201,7 +192,7 @@
       <workItem from="1742876798939" duration="14633000" />
       <workItem from="1742911384316" duration="2095000" />
       <workItem from="1744287099352" duration="10747000" />
-      <workItem from="1744440349243" duration="7855000" />
+      <workItem from="1744440349243" duration="8284000" />
     </task>
     <task id="LOCAL-00001" summary="bug fix">
       <option name="closed" value="true" />
