@@ -72,6 +72,7 @@ class PostRepository implements PostInterface
 
     public function createPagePost(array $data) : ?object
     {
+        if (Page::query()->where('page_menu_id', $data["page_menu_id"])->exists()) throw new \Exception('Sahifa kiritilgan');
         $query = Page::create([
             'page_menu_id' => $data["page_menu_id"],
             'page_content' => $data["page_content"],
