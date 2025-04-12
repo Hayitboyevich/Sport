@@ -24,6 +24,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('menu', [MenuController::class, 'MainMenu']);
 Route::get('list-kafedra', [PostController::class, 'listKafedra']);
 Route::post('post-info', [PostController::class, 'GetMenuInfo']);
+Route::post('relation-pages', [PostController::class, 'getRelationPages']);
 Route::get('post/{id}', [PostController::class, 'getPost']);
 Route::get('partners', [PartnerController::class, 'list']);
 Route::get('links', [LinkController::class, 'list']);

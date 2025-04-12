@@ -6,6 +6,7 @@ use App\Models\Kafedra;
 use App\Models\Member;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\SubMenu;
 use App\Repository\PostRepository;
 use App\Service\PostService;
 use App\Traits\ResponseTrait;
@@ -381,6 +382,35 @@ class PostController extends Controller
         try {
             $post = $this->postRepository->getMenuInfo($request->slug);
             return $this->responseSuccess($post);
+        } catch (\Exception $e) {
+            return $this->responseErrorWithCode($e->getCode(), $e->getMessage());
+        }
+    }
+
+    public function getRelationPages(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'slug' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->responseErrorWithCode(404, $validator->errors()->toJson());
+        }
+
+        try {
+            $query = SubMenu::query()
+                ->where('slug', $request->slug)
+                ->first();
+
+            if (!$query) {
+                return $this->responseErrorWithCode(404, 'SubMenu not found for the given slug.');
+            }
+
+            $data = SubMenu::query()
+                ->where('menu_id', $query->menu_id)
+                ->where('slug', '!=', $request->slug)
+                ->get();
+            return $this->responseSuccess($data);
         } catch (\Exception $e) {
             return $this->responseErrorWithCode($e->getCode(), $e->getMessage());
         }
