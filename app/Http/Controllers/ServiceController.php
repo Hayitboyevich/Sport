@@ -102,7 +102,7 @@ class ServiceController extends Controller
         try {
             $image = Image::query()->findOrFail($id);
             $image->delete();
-            return $this->responseSuccess(null);
+            return $this->responseSuccess('deleted');
         }catch (\Exception $exception){
             return $this->responseErrorWithCode(404, 'Xatolik aniqlandi');
         }
