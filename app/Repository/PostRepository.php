@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Exceptions\CustomException;
 use App\Interface\PostInterface;
 use App\Models\Member;
 use App\Models\Page;
@@ -72,7 +73,7 @@ class PostRepository implements PostInterface
 
     public function createPagePost(array $data) : ?object
     {
-        if (Page::query()->where('page_menu_id', $data["page_menu_id"])->exists()) throw new \Exception('Sahifa kiritilgan');
+        if (Page::query()->where('page_menu_id', $data["page_menu_id"])->exists()) throw new CustomException(409, "Post already exists");
         $query = Page::create([
             'page_menu_id' => $data["page_menu_id"],
             'page_content' => $data["page_content"],
