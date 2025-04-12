@@ -7,6 +7,7 @@ use App\Http\Requests\ServiceUpdateRequest;
 use App\Models\Image;
 use App\Models\Service;
 use App\Traits\ResponseTrait;
+use Illuminate\Support\Facades\Request;
 
 class ServiceController extends Controller
 {
