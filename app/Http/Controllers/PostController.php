@@ -47,7 +47,7 @@ class PostController extends Controller
             $posts = $this->postRepository->createPost($request->all());
             return $this->responseSuccess($posts);
         } catch (\Exception $e) {
-            return $this->responseErrorWithCode(500, $e->getMessage());
+            return $this->responseErrorWithCode(404, $e->getMessage());
         }
     }
 
@@ -139,16 +139,16 @@ class PostController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'post_menu_id' => 'required',
-            'post_title' => 'required|string',
-            'post_image' => 'required|string',
-            'post_desc' => 'required|string',
-            'post_content' => 'required|string',
-            'post_title_ru' => 'required|string',
-            'post_title_en' => 'required|string',
-            'post_desc_ru' => 'required|string',
-            'post_desc_en' => 'required|string',
-            'post_content_ru' => 'required|string',
-            'post_content_en' => 'required|string',
+            'post_title' => 'sometimes',
+            'post_image' => 'sometimes',
+            'post_desc' => 'sometimes',
+            'post_content' => 'sometimes',
+            'post_title_ru' => 'sometimes',
+            'post_title_en' => 'sometimes',
+            'post_desc_ru' => 'sometimes',
+            'post_desc_en' => 'sometimes',
+            'post_content_ru' => 'sometimes',
+            'post_content_en' => 'sometimes',
             'post_date' => 'required|date'
         ]);
 
