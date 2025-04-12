@@ -67,8 +67,25 @@ class GaleryController extends Controller
     public function edit($id, Request $request)
     {
         try {
+            $gallery = Galery::query()->findOrFail($id);
+            $gallery->update($request->except('image', 'images'));
 
-        }catch (Exception $exception){
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $path = $image->store('galery', 'public');
+                $gallery->image = $path;
+                $gallery->save();
+            }
+
+            if ($request->hasFile('images')) {
+                $gallery->images()->delete();
+                foreach ($request->file('images') as $key=>$image) {
+                    $path = $image->store('gallery', 'public');
+                    $gallery->images()->create(['url' => $path, 'order' => $key+1]);
+                }
+            }
+            return $this->responseSuccess($gallery);
+        }catch (\Exception $exception){
             return $this->responseErrorWithCode(404, $exception->getMessage());
         }
     }
