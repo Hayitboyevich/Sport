@@ -21,10 +21,10 @@ class MenuController extends Controller
     public function createMainMenu(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title_uz' => 'sometimes',
+            'title_uz' => 'required|max:100',
             'title_ru' => 'sometimes',
             'title_en' => 'sometimes',
-            'slug' => 'required'
+            'slug' => 'sometimes'
         ]);
 
         if ($validator->fails()) {
