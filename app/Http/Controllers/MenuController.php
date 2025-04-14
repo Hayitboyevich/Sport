@@ -35,7 +35,7 @@ class MenuController extends Controller
             $create = $this->menuService->createMainMenu($request->all());
             return $this->responseSuccess($create);
         } catch (\Exception $e) {
-            return $this->responseErrorWithCode($e->getCode());
+            return $this->responseErrorWithCode(404, $e->getMessage());
         }
     }
 
