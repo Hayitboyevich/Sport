@@ -161,7 +161,7 @@ class PostController extends Controller
             $posts = $this->postRepository->editPost($id, $request->all());
             return $this->responseSuccess($posts);
         } catch (\Exception $e) {
-            return $this->responseErrorWithCode($e->getCode(), $e->getMessage());
+            return $this->responseErrorWithCode(404, $e->getMessage());
         }
     }
 
