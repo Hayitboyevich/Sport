@@ -21,9 +21,9 @@ class MenuController extends Controller
     public function createMainMenu(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title_uz' => 'required|string',
-            'title_ru' => 'required|string',
-            'title_en' => 'required|string',
+            'title_uz' => 'sometimes',
+            'title_ru' => 'sometimes',
+            'title_en' => 'sometimes',
             'slug' => 'required'
         ]);
 
