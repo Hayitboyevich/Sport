@@ -14,6 +14,8 @@ class SubMenu extends Model
         'sub_title_ru',
         'sub_title_en',
         'sub_type',
-        'slug'
+        'slug',
+        "order",
+        "status"
     ];
 }

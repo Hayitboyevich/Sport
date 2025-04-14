@@ -6,7 +6,6 @@ use App\Http\Requests\GaleryRequest;
 use App\Models\Galery;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
-use mysql_xdevapi\Exception;
 
 class GaleryController extends Controller
 {
@@ -97,6 +96,16 @@ class GaleryController extends Controller
             return $this->responseSuccess($gallery);
         }catch (\Exception $exception){
             return $this->responseErrorWithCode(404, 'Xatolik aniqlandi');
+        }
+    }
+
+    public function getOne($id)
+    {
+        try {
+            $gallery = Galery::query()->findOrFail($id);
+            return $this->responseSuccess($gallery);
+        }catch (\Exception $exception){
+            return $this->responseErrorWithCode(404, $exception->getMessage());
         }
     }
 }

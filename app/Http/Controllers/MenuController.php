@@ -53,9 +53,9 @@ class MenuController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'menu_id' => 'required',
-            'sub_title_uz' => 'required|string',
-            'sub_title_ru' => 'required|string',
-            'sub_title_en' => 'required|string'
+            'sub_title_uz' => 'sometimes',
+            'sub_title_ru' => 'sometimes',
+            'sub_title_en' => 'sometimes'
         ]);
 
         if ($validator->fails()) {
@@ -67,6 +67,28 @@ class MenuController extends Controller
             return $this->responseSuccess($create);
         } catch (\Exception $e) {
             return $this->responseErrorWithCode($e->getCode());
+        }
+    }
+
+    public function editSubMenu($id, Request $request)
+    {
+        try {
+          $subMenu = SubMenu::query()->findOrFail($id);
+          $subMenu->update($request->all());
+          return $this->responseSuccess($subMenu);
+        }catch (\Exception $exception){
+            return $this->responseErrorWithCode($exception->getCode());
+        }
+    }
+
+    public function editMainMenu($id, Request $request)
+    {
+        try {
+            $menu = Menu::query()->findOrFail($id);
+            $menu->update($request->all());
+            return $this->responseSuccess($menu);
+        }catch (\Exception $exception){
+            return $this->responseErrorWithCode($exception->getCode());
         }
     }
 
@@ -85,7 +107,11 @@ class MenuController extends Controller
         $id = intval($id);
         $id = htmlspecialchars($id);
         $request = SubMenu::query()
+            ->when(isset($request->status), function ($q) use ($request) {
+                $q->where('status', $request->status);
+            })
             ->where('sub_type', $id)
+            ->orderBy('order')
             ->get();
 
         return $this->responseSuccess($request);
@@ -93,11 +119,21 @@ class MenuController extends Controller
 
     public function MainMenu(Request $request)
     {
-        $menus = Menu::all(); // Retrieve all main menus
+        $menus = Menu::query()
+            ->when(isset($request->status), function ($q) use ($request) {
+                $q->where('status', $request->status);
+            })
+            ->orderBy('order')
+            ->get();
         $result = [];
 
         foreach ($menus as $menu) {
-            $submenus = SubMenu::where('menu_id', $menu->id)->get();
+            $submenus = SubMenu::query()
+                ->when(isset($request->status), function ($q) use ($request) {
+                    $q->where('status', $request->status);
+                })
+                ->where('menu_id', $menu->id)
+                ->orderBy('order')->get();
 
             $result[] = [
                 "main_menu_id" => $menu->id,
@@ -105,12 +141,16 @@ class MenuController extends Controller
                 "main_menu_ru" => $menu->title_ru,
                 "main_menu_en" => $menu->title_en,
                 "main_slug" => $menu->slug,
+                'order' => $menu->order,
+                "status" => $menu->status,
                 "submenu" => $submenus->map(function ($submenu) {
                     return [
                         "submenu_id" => $submenu->id,
                         "submenu_title_uz" => $submenu->sub_title_uz,
                         "submenu_title_ru" => $submenu->sub_title_ru,
                         "submenu_title_en" => $submenu->sub_title_en,
+                        "order" => $submenu->order,
+                        "status" => $submenu->status,
                         "submenu_slug" => $submenu->slug,
                     ];
                 })

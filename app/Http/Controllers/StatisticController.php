@@ -66,4 +66,14 @@ class StatisticController extends Controller
             return $this->responseErrorWithCode(404, 'Xatolik aniqlandi');
         }
     }
+
+    public function getOne($id)
+    {
+        try {
+           $statistic = Statistic::query()->findOrFail($id);
+           return $this->responseSuccess($statistic);
+        }catch (\Exception $exception){
+            return $this->responseErrorWithCode(404, $exception->getMessage());
+        }
+    }
 }

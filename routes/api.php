@@ -27,18 +27,25 @@ Route::post('post-info', [PostController::class, 'GetMenuInfo']);
 Route::post('relation-pages', [PostController::class, 'getRelationPages']);
 Route::get('post/{id}', [PostController::class, 'getPost']);
 Route::get('partners', [PartnerController::class, 'list']);
+Route::get('partner/{id}', [PartnerController::class, 'getPartner']);
 Route::get('links', [LinkController::class, 'list']);
+Route::get('link/{id}', [LinkController::class, 'getOne']);
 Route::get('statistics', [StatisticController::class, 'list']);
+Route::get('statistic/{id}', [StatisticController::class, 'getOne']);
 Route::get('services', [ServiceController::class, 'list']);
+Route::get('service/{id}', [ServiceController::class, 'getOne']);
 Route::get('galleries', [GaleryController::class, 'list']);
+Route::get('gallery/{id}', [GaleryController::class, 'getOne']);
 
 Route::middleware(['jwtauth'])->group(function () {
     Route::post('me', [AuthController::class, 'me']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('create-main-menu', [MenuController::class, 'createMainMenu']);
+    Route::put('edit-main-menu/{id}', [MenuController::class, 'editMainMenu']);
     Route::get('main-menu-list', [MenuController::class, 'MenuList']);
     Route::post('create-sub-menu', [MenuController::class, 'createSubMenu']);
+    Route::put('edit-sub-menu/{id}', [MenuController::class, 'editSubMenu']);
     Route::get('sub-menu-list', [MenuController::class, 'SubMenuList']);
     Route::get('sub-menu-type/{id}', [MenuController::class, 'SubMenuType']);
     Route::post('create-post', [PostController::class, 'createPost']);
@@ -70,7 +77,6 @@ Route::middleware(['jwtauth'])->group(function () {
     Route::delete('partner/delete/{id}', [PartnerController::class, 'delete']);
     Route::put('partner/edit/{id}', [PartnerController::class, 'edit']);
     Route::post('partner/create', [PartnerController::class, 'create']);
-    Route::get('partner/{id}', [PartnerController::class, 'getPartner']);
 
     // Foydali linklar
 

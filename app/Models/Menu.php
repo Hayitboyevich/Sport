@@ -11,6 +11,8 @@ class Menu extends Model
         "title_ru",
         "title_en",
         "slug",
-        "type"
+        "type",
+        "order",
+        "status"
     ];
 }

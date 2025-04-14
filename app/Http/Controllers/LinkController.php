@@ -69,4 +69,14 @@ class LinkController extends Controller
             return $this->responseErrorWithCode(404, 'Not Found');
         }
     }
+
+    public function getOne($id)
+    {
+        try {
+          $link = Link::query()->findOrFail($id);
+          return $this->responseSuccess($link);
+        }catch (\Exception $exception){
+            return $this->responseErrorWithCode(404, $exception->getMessage());
+        }
+    }
 }
