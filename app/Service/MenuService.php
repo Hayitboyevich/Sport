@@ -38,12 +38,16 @@ class MenuService
 
     public function createSubMenu(array $menu) : ?object
     {
-        $menu['slug'] = self::slugGenerate($menu['sub_title_uz']);
-        if ($this->menu->getSubMenuBySlug($menu['slug'])) {
-            throw new CustomException(409, "Menu already exists");
-        }
+        try {
+            $menu['slug'] = self::slugGenerate($menu['sub_title_uz']);
+            if ($this->menu->getSubMenuBySlug($menu['slug'])) {
+                throw new CustomException(409, "Menu already exists");
+            }
 
-        return $this->menu->createSubMenu($menu);
+            return $this->menu->createSubMenu($menu);
+        }catch (\Exception $exception){
+            throw $exception;
+        }
     }
 
     public function getSubMenu() : array
