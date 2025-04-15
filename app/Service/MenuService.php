@@ -19,13 +19,16 @@ class MenuService
     }
     public function createMainMenu(array $menu) : ?object
     {
-        $menu['slug'] = self::slugGenerate($menu['title_uz']);
-        if ($this->menu->getMenuBySlug($menu['slug'])) {
-            throw new CustomException(409, "Menu already exists");
-        }
-        $menu['slug'] = self::slugGenerate($menu['title_uz']);
+        try {
+            $menu['slug'] = self::slugGenerate($menu['title_uz']);
+            if ($this->menu->getMenuBySlug($menu['slug'])) {
+                throw new CustomException(409, "Menu already exists");
+            }
 
-        return $this->menu->createMainMenu($menu);
+            return $this->menu->createMainMenu($menu);
+        }catch (\Exception $exception){
+            throw $exception;
+        }
     }
 
     public function getMainMenu() : array

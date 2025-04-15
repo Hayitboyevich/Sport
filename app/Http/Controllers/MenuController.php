@@ -21,10 +21,11 @@ class MenuController extends Controller
     public function createMainMenu(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title_uz' => 'sometimes',
+
+            'title_uz' => 'required|max:100',
             'title_ru' => 'sometimes',
             'title_en' => 'sometimes',
-            'slug' => 'required'
+            'slug' => 'sometimes'
         ]);
 
         if ($validator->fails()) {
@@ -35,7 +36,7 @@ class MenuController extends Controller
             $create = $this->menuService->createMainMenu($request->all());
             return $this->responseSuccess($create);
         } catch (\Exception $e) {
-            return $this->responseErrorWithCode($e->getCode());
+            return $this->responseErrorWithCode(404, $e->getMessage());
         }
     }
 
