@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Kafedra;
 use App\Models\Member;
+use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\SubMenu;
-use App\Repository\PostRepository;
 use App\Service\PostService;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
@@ -384,6 +384,30 @@ class PostController extends Controller
             return $this->responseSuccess($post);
         } catch (\Exception $e) {
             return $this->responseErrorWithCode($e->getCode(), $e->getMessage());
+        }
+    }
+
+    public function orderMenu(Request $request)
+    {
+        try {
+            foreach ($request->all() as $menu) {
+                Menu::query()->findOrFail($menu['id'])->update(['order' => $menu['order']]);
+            }
+            return $this->responseSuccess('updated');
+        } catch (\Exception $exception) {
+            return $this->responseErrorWithCode(404, $exception->getMessage());
+        }
+    }
+
+    public function orderSubMenu(Request $request)
+    {
+        try {
+            foreach ($request->all() as $menu) {
+                SubMenu::query()->where('sub_menu_id', $menu['id'])->update(['order' => $menu['order']]);
+            }
+            return $this->responseSuccess('updated');
+        } catch (\Exception $exception) {
+            return $this->responseErrorWithCode(404, $exception->getMessage());
         }
     }
 
