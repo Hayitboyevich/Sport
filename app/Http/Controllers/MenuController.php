@@ -21,9 +21,9 @@ class MenuController extends Controller
     public function createMainMenu(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title_uz' => 'required|string',
-            'title_ru' => 'required|string',
-            'title_en' => 'required|string',
+            'title_uz' => 'sometimes',
+            'title_ru' => 'sometimes',
+            'title_en' => 'sometimes',
             'slug' => 'required'
         ]);
 
@@ -145,7 +145,7 @@ class MenuController extends Controller
                 "status" => $menu->status,
                 "submenu" => $submenus->map(function ($submenu) {
                     return [
-                        "submenu_id" => $submenu->id,
+                        "submenu_id" => $submenu->sub_menu_id,
                         "submenu_title_uz" => $submenu->sub_title_uz,
                         "submenu_title_ru" => $submenu->sub_title_ru,
                         "submenu_title_en" => $submenu->sub_title_en,
