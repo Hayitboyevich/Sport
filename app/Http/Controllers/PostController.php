@@ -52,13 +52,13 @@ class PostController extends Controller
         }
     }
 
-    public function PostList(Request $request)
+    public function PostList()
     {
 
         try {
             $posts = Post::query()
                 ->orderBy('post_date', 'DESC')
-                ->paginate($request->per_page, 10);
+                ->paginate(\request('per_page', 10));
             $meta = pagination($posts);
             return $this->responseSuccess($posts, 'success', $meta);
         } catch (\Exception $e) {
