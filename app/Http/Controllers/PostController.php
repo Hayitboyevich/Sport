@@ -115,7 +115,9 @@ class PostController extends Controller
             $query = Post::query()
                 ->where('post_menu_id', $id)
                 ->paginate(\request('per_page', 10));
-            return $this->responseSuccess($query, meta: pagination($query));
+
+            $meta = pagination($query);
+            return $this->responseSuccess($query, 'succes', $meta);
         } catch (\Exception $e) {
             return $this->responseErrorWithCode($e->getCode(), $e->getMessage());
         }
