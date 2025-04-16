@@ -17,13 +17,14 @@ trait ResponseTrait
      *
      * @return JsonResponse
      */
-    public function responseSuccess($data = [], $message = "Successful"): JsonResponse
+    public function responseSuccess($data = [], $message = "Successful", $meta = []): JsonResponse
     {
         return response()->json([
             'status' => true,
             'message' => $message,
             'code' => 200,
             'data' => $data,
+            'meta' => $meta,
             'errors' => null
         ]);
     }
