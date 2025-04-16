@@ -8,7 +8,7 @@ if (!function_exists('pagination')) {
                 'total' => $model->total(),
                 'perPage' => $model->perPage(),
                 'currentPage' => $model->currentPage(),
-                'from' => $model->from(),
+                'from' => $model->firstItem(),
             ];
         else
             $data = [
