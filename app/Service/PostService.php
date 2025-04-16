@@ -102,9 +102,9 @@ class PostService
          }
      }
 
-     public function PostList(int $page, int $perPage = 20) : array
+     public function PostList() : array
      {
-         return $this->postRepository->PostList($page, $perPage);
+         return $this->postRepository->PostList();
      }
 
      public function createPagePost(array $data): ?object

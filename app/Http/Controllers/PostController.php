@@ -52,12 +52,15 @@ class PostController extends Controller
         }
     }
 
-    public function PostList(Request $request, $page)
+    public function PostList(Request $request)
     {
 
         try {
-            $posts = $this->postRepository->PostList($page, 20);
-            return $this->responseSuccess($posts);
+            $posts = Post::query()
+                ->orderBy('post_date', 'DESC')
+                ->paginate($request->per_page, 10);
+            $meta = pagination($posts);
+            return $this->responseSuccess($posts, 'success', $meta);
         } catch (\Exception $e) {
             return $this->responseErrorWithCode(500, $e->getMessage());
         }
