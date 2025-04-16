@@ -114,7 +114,7 @@ class PostController extends Controller
         try {
             $query = Post::query()
                 ->where('post_menu_id', $id)
-                ->get();
+                ->paginate(\request('per_page', 10));
             return $this->responseSuccess($query);
         } catch (\Exception $e) {
             return $this->responseErrorWithCode($e->getCode(), $e->getMessage());

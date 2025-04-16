@@ -26,6 +26,7 @@ Route::get('list-kafedra', [PostController::class, 'listKafedra']);
 Route::post('post-info', [PostController::class, 'GetMenuInfo']);
 Route::post('relation-pages', [PostController::class, 'getRelationPages']);
 Route::get('post/{id}', [PostController::class, 'getPost']);
+Route::get('post-one/{id}', [PostController::class, 'PostOne']);
 Route::get('partners', [PartnerController::class, 'list']);
 Route::get('partner/{id}', [PartnerController::class, 'getPartner']);
 Route::get('links', [LinkController::class, 'list']);
@@ -55,7 +56,6 @@ Route::middleware(['jwtauth'])->group(function () {
     Route::post('create-post', [PostController::class, 'createPost']);
     Route::get('post-list/{id}', [PostController::class, 'PostList']);
     Route::delete('post/{id}', [PostController::class, 'PostDelete']);
-    Route::get('post-one/{id}', [PostController::class, 'PostOne']);
     Route::post('upload-image', [PostController::class, 'UploadImage']);
     Route::put('edit-post/{id}', [PostController::class, 'editPost']);
 
