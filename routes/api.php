@@ -43,11 +43,11 @@ Route::middleware(['jwtauth'])->group(function () {
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('create-main-menu', [MenuController::class, 'createMainMenu']);
     Route::put('edit-main-menu/{id}', [MenuController::class, 'editMainMenu']);
-    Route::post('oder-menu', [PostController::class, 'orderMenu']);
+    Route::post('order-menu', [PostController::class, 'orderMenu']);
     Route::get('main-menu-list', [MenuController::class, 'MenuList']);
     Route::post('create-sub-menu', [MenuController::class, 'createSubMenu']);
     Route::put('edit-sub-menu/{id}', [MenuController::class, 'editSubMenu']);
-    Route::post('oder-sub-menu', [PostController::class, 'orderSubMenu']);
+    Route::post('order-sub-menu', [PostController::class, 'orderSubMenu']);
     Route::get('sub-menu-list', [MenuController::class, 'SubMenuList']);
     Route::get('sub-menu-type/{id}', [MenuController::class, 'SubMenuType']);
     Route::post('create-post', [PostController::class, 'createPost']);
