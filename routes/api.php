@@ -36,6 +36,8 @@ Route::get('services', [ServiceController::class, 'list']);
 Route::get('service/{id}', [ServiceController::class, 'getOne']);
 Route::get('galleries', [GaleryController::class, 'list']);
 Route::get('gallery/{id}', [GaleryController::class, 'getOne']);
+Route::get('member-list/{id}', [PostController::class, 'memberList']);
+
 
 Route::middleware(['jwtauth'])->group(function () {
     Route::post('me', [AuthController::class, 'me']);
@@ -65,7 +67,6 @@ Route::middleware(['jwtauth'])->group(function () {
 
     // member
     Route::post('create-member', [PostController::class, 'createMember']);
-    Route::get('member-list/{id}', [PostController::class, 'memberList']);
     Route::delete('delete-member/{id}', [PostController::class, 'deleteMember']);
     Route::put('edit-member/{id}', [PostController::class, 'editMember']);
 
