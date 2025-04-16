@@ -60,7 +60,8 @@ class PostController extends Controller
                 ->orderBy('post_date', 'DESC')
                 ->paginate(\request('per_page', 10));
             $meta = pagination($posts);
-            return $this->responseSuccess($posts, 'success', $meta);
+            $items = $posts->items();
+            return $this->responseSuccess($items, 'success', $meta);
         } catch (\Exception $e) {
             return $this->responseErrorWithCode(500, $e->getMessage());
         }
@@ -120,7 +121,8 @@ class PostController extends Controller
                 ->paginate(\request('per_page', 10));
 
             $meta = pagination($query);
-            return $this->responseSuccess($query, 'succes', $meta);
+            $items = $query->items();
+            return $this->responseSuccess($items, 'succes', $meta);
         } catch (\Exception $e) {
             return $this->responseErrorWithCode($e->getCode(), $e->getMessage());
         }
