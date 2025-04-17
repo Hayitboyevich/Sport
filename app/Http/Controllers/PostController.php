@@ -134,12 +134,12 @@ class PostController extends Controller
         $directory = "uploads/$today";
 
 
-        $file = $request->file('file');
+        $file = $request->file('upload');
         $fileName = time() . '_' . $file->getClientOriginalName();
         $filePath = $file->storeAs($directory, $fileName, 'public');
 
         return response()->json([
-            'default' => asset("storage/$filePath")
+            'default' => url().asset("/storage/$filePath")
         ]);
     }
 
