@@ -86,6 +86,7 @@ class MenuController extends Controller
     {
         try {
             $menu = Menu::query()->findOrFail($id);
+
             $menu->update($request->all());
             return $this->responseSuccess($menu);
         }catch (\Exception $exception){
