@@ -139,7 +139,7 @@ class PostController extends Controller
         $filePath = $file->storeAs($directory, $fileName, 'public');
 
         return response()->json([
-            'default' => url().asset("/storage/$filePath")
+            'default' => asset("storage/$filePath")
         ]);
     }
 
