@@ -37,9 +37,13 @@ class MenuRepository implements MenuInterface
             'sub_title_uz' => $data['sub_title_uz'] ?? null,
             'sub_title_ru' => $data['sub_title_ru'] ?? null,
             'sub_title_en' => $data['sub_title_en'] ?? null,
-            'sub_type' => $data['sub_type'] ?? 100,
+            'sub_type' => $data['sub_type'],
             'slug' => $data['slug']
         ]);
+
+        if ($data['sub_type'] == 200){
+            SubMenu::query()->find($data['manu_id'])->update(['sub_type' => 100]);
+        }
 
         return $query;
     }

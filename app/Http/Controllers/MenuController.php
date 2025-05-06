@@ -56,7 +56,8 @@ class MenuController extends Controller
             'menu_id' => 'required',
             'sub_title_uz' => 'sometimes',
             'sub_title_ru' => 'sometimes',
-            'sub_title_en' => 'sometimes'
+            'sub_title_en' => 'sometimes',
+            'sub_type' => 'required'
         ]);
 
         if ($validator->fails()) {
