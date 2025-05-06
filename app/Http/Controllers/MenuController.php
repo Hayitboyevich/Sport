@@ -147,15 +147,18 @@ class MenuController extends Controller
                 'order' => $menu->order,
                 "status" => $menu->status,
                 "submenu" => $submenus->map(function ($submenu) {
-                    return [
-                        "submenu_id" => $submenu->sub_menu_id,
-                        "submenu_title_uz" => $submenu->sub_title_uz,
-                        "submenu_title_ru" => $submenu->sub_title_ru,
-                        "submenu_title_en" => $submenu->sub_title_en,
-                        "order" => $submenu->order,
-                        "status" => $submenu->status,
-                        "submenu_slug" => $submenu->slug,
-                    ];
+                    if ($submenu->sub_type != 200){
+                        return [
+                            "submenu_id" => $submenu->sub_menu_id,
+                            "submenu_title_uz" => $submenu->sub_title_uz,
+                            "submenu_title_ru" => $submenu->sub_title_ru,
+                            "submenu_title_en" => $submenu->sub_title_en,
+                            "order" => $submenu->order,
+                            "status" => $submenu->status,
+                            "submenu_slug" => $submenu->slug,
+                        ];
+                    }
+
                 })
             ];
         }
