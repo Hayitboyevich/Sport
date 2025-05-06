@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ce47ba4-3e63-444c-b694-f05ddaefdf55" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Sport.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Sport.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/SubMenu.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/SubMenu.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repository/MenuRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repository/MenuRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

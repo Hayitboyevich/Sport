@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SubMenu extends Model
 {
@@ -16,6 +18,18 @@ class SubMenu extends Model
         'sub_type',
         'slug',
         "order",
-        "status"
+        "status",
+        "parent_id"
     ];
+
+    public function submenus(): HasMany
+    {
+        return $this->hasMany(SubMenu::class, 'parent_id', 'sub_menu_id');
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(SubMenu::class, 'parent_id', 'sub_menu_id');
+    }
+
 }

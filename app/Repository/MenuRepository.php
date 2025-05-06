@@ -33,7 +33,7 @@ class MenuRepository implements MenuInterface
     public function createSubMenu(array $data) : ?object
     {
         $query = SubMenu::create([
-            'menu_id' => $data['menu_id'],
+            'menu_id' => $data['menu_id'] ?? null,
             'sub_title_uz' => $data['sub_title_uz'] ?? null,
             'sub_title_ru' => $data['sub_title_ru'] ?? null,
             'sub_title_en' => $data['sub_title_en'] ?? null,
@@ -42,7 +42,8 @@ class MenuRepository implements MenuInterface
         ]);
 
         if ($data['sub_type'] == 200){
-            SubMenu::query()->find($data['manu_id'])->update(['sub_type' => 100]);
+            $query->update['parent_id'] = $data['parent_id'];
+            SubMenu::query()->where('sub_menu_id', $data['parent_id'])->update(['sub_type' => 100]);
         }
 
         return $query;

@@ -57,7 +57,8 @@ class MenuController extends Controller
             'sub_title_uz' => 'sometimes',
             'sub_title_ru' => 'sometimes',
             'sub_title_en' => 'sometimes',
-            'sub_type' => 'required'
+            'sub_type' => 'required',
+            'parent_id' => 'sometimes'
         ]);
 
         if ($validator->fails()) {
@@ -147,7 +148,6 @@ class MenuController extends Controller
                 'order' => $menu->order,
                 "status" => $menu->status,
                 "submenu" => $submenus->map(function ($submenu) {
-                    if ($submenu->sub_type != 200){
                         return [
                             "submenu_id" => $submenu->sub_menu_id,
                             "submenu_title_uz" => $submenu->sub_title_uz,
@@ -156,8 +156,18 @@ class MenuController extends Controller
                             "order" => $submenu->order,
                             "status" => $submenu->status,
                             "submenu_slug" => $submenu->slug,
+                            "submenu" => $submenu->submenus->map(function ($child){
+                                return [
+                                    "submenu_id" => $child->sub_menu_id,
+                                    "submenu_title_uz" => $child->sub_title_uz,
+                                    "submenu_title_ru" => $child->sub_title_ru,
+                                    "submenu_title_en" => $child->sub_title_en,
+                                    "order" => $child->order,
+                                    "status" => $child->status,
+                                    "submenu_slug" => $child->slug,
+                                ];
+                            })
                         ];
-                    }
 
                 })
             ];
