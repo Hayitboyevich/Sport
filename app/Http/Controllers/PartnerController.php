@@ -17,7 +17,7 @@ class PartnerController extends Controller
     {
         try {
             $query = Partner::query()
-                ->get();
+                ->orderByDesc('created_at')->get();
             return $this->responseSuccess($query);
         } catch (\Exception $exception) {
             return $this->responseErrorWithCode(404, 'Not Found');

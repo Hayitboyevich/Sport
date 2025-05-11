@@ -118,6 +118,7 @@ class PostController extends Controller
         try {
             $query = Post::query()
                 ->where('post_menu_id', $id)
+                ->orderByDesc('created_at')
                 ->paginate(\request('per_page', 10));
 
             $meta = pagination($query);
