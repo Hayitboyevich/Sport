@@ -53,7 +53,7 @@ class MenuController extends Controller
     public function createSubMenu(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'menu_id' => 'required',
+            'menu_id' => 'sometimes',
             'sub_title_uz' => 'sometimes',
             'sub_title_ru' => 'sometimes',
             'sub_title_en' => 'sometimes',
