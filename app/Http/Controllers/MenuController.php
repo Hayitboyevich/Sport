@@ -114,7 +114,11 @@ class MenuController extends Controller
             ->when(isset($request->status), function ($q) use ($request) {
                 $q->where('status', $request->status);
             })
-            ->where('sub_type', $id)
+            >when($id == 1, function ($q) {
+                $q->whereIn('sub_type', [1, 200]);
+            }, function ($q) use ($id) {
+                $q->where('sub_type', $id);
+            })
             ->orderBy('order')
             ->get();
 
