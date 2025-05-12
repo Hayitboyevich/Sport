@@ -42,7 +42,8 @@ class MenuRepository implements MenuInterface
         ]);
 
         if ($data['sub_type'] == 200){
-            $query->update['parent_id'] = $data['parent_id'];
+            $query->parent_id = $data['parent_id'];
+            $query->save();
             SubMenu::query()->where('sub_menu_id', $data['parent_id'])->update(['sub_type' => 100]);
         }
 
