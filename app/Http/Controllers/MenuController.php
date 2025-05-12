@@ -112,12 +112,12 @@ class MenuController extends Controller
         $id = htmlspecialchars($id);
         $request = SubMenu::query()
             ->when(isset($request->status), function ($q) use ($request) {
-                $q->where('status', $request->status);
+                return $q->where('status', $request->status);
             })
-            >when($id == 1, function ($q) {
-                $q->whereIn('sub_type', [1, 200]);
+            ->when($id == 1, function ($q) {
+                return $q->whereIn('sub_type', [1, 200]);
             }, function ($q) use ($id) {
-                $q->where('sub_type', $id);
+                return $q->where('sub_type', $id);
             })
             ->orderBy('order')
             ->get();
